@@ -33,10 +33,7 @@ const handler = async (m, { conn, usedPrefix }) => {
 
     await conn.sendMessage(m.chat, {
       text: textMsg,
-      footer: "Seleziona un'opzione qui sotto 👇",
-      buttons: [
-        { buttonId: usedPrefix + "ds", buttonText: { displayText: "🔄 𝐒𝐯𝐮𝐨𝐭𝐚 𝐝𝐢 𝐧𝐮𝐨𝐯𝐨" }, type: 1 },
-        { buttonId: usedPrefix + "ping", buttonText: { displayText: "📡 𝐏𝐢𝐧𝐠" }, type: 1 },
+     
       ],
       headerType: 1
     }, { quoted: m });
