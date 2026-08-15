@@ -24,10 +24,14 @@ const fancyClock = (ms) => {
 
 const handler = async (m, { conn }) => {
     const old = performance.now()
-    const cpus = os.cpus()
-    const cpuModel = cpus[0].model.trim()
-    const cpuSpeed = cpus[0].speed
-    const cpuCores = cpus.length
+    
+    // Gestione sicura per le CPU (evita crash se os.cpus() è vuoto)
+    const cpus = os.cpus() || []
+    const firstCpu = cpus[0] || {}
+    const cpuModel = firstCpu.model ? firstCpu.model.trim() : 'Non disponibile'
+    const cpuSpeed = firstCpu.speed ? `${firstCpu.speed} MHz` : 'N/D'
+    const cpuCores = cpus.length || 'N/D'
+
     const totalMem = os.totalmem()
     const freeMem = os.freemem()
     const usedMem = totalMem - freeMem
@@ -37,7 +41,8 @@ const handler = async (m, { conn }) => {
     const platform = os.platform()
     const arch = os.arch()
     const hostname = os.hostname()
-    const loadAvg = os.loadavg().map(v => v.toFixed(2)).join(' | ')
+    const loadAvg = os.loadavg() ? os.loadavg().map(v => v.toFixed(2)).join(' | ') : 'N/D'
+    
     const neww = performance.now()
     const speed = (neww - old).toFixed(2)
 
@@ -56,7 +61,7 @@ const handler = async (m, { conn }) => {
 ├ 『 💻 』 *SPECIFICHE CPU*
 │ >_ \`Modello:\` *${cpuModel}*
 │ >_ \`Core:\` *${cpuCores} Threads*
-│ >_ \`Velocità:\` *${cpuSpeed} MHz*
+│ >_ \`Velocità:\` *${cpuSpeed}*
 │
 ├ 『 ⚙️ 』 *SISTEMA*
 │ >_ \`OS:\` *${platform} (${arch})*
@@ -68,6 +73,7 @@ const handler = async (m, { conn }) => {
 │
 ╰⭑⭒━✦⋆ \`𝟴𝟴𝟴 𝗕𝗢𝗧\` ⋆✦━⭒⭑
 `.trim()
+
     await conn.sendPresenceUpdate('composing', m.chat)
     await conn.reply(m.chat, text, m, { ...global.rcanal })
 }
