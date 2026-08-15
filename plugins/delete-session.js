@@ -13,7 +13,7 @@ const handler = async (m, { conn }) => {
 
     if (!existsSync(sessionFolder)) {
       return await conn.sendMessage(m.chat, {
-        text: "*❌ 𝐍𝐨𝐧 𝐜𝐢 𝐬𝐨𝐧𝐨 sessioni o 𝐧𝐨𝐧 𝐞𝐬𝐢𝐬𝐭𝐨𝐧𝐨.*"
+        text: "*❌ 𝐍𝐨𝐧 𝐜𝐢 𝐬𝐨𝐧𝐨 𝗵𝗮𝗻𝗱𝗶𝗰𝗮𝗽𝗽𝗮𝘁𝗶 o 𝐧𝐨𝐧 𝐞𝐬𝐢𝐬𝐭𝐨𝐧𝐨.*"
       }, { quoted: m });
     }
 
@@ -28,8 +28,8 @@ const handler = async (m, { conn }) => {
     }
 
     const textMsg = deletedCount === 0 
-      ? '❗ 𝐍𝐢𝐞𝐧𝐭𝐞 sessioni, 𝐫𝐢𝐩𝐫𝐨𝐯𝐚 𝐭𝐫𝐚 𝐩𝐨𝐜𝐨 𝐧𝐞 𝐡𝐨 𝐛𝐢𝐬𝐨𝐠𝐧𝐨 ‼️' 
-      : '🔥🔫 𝐇𝐨 𝐬𝐩𝐚𝐰𝐧-𝐤𝐢𝐥𝐥𝐚𝐭𝐨 ' + deletedCount + ' sessioni !💀';
+      ? '❗ 𝐍𝐢𝐞𝐧𝐭𝐞 𝗵𝗮𝗻𝗱𝗶𝗰𝗮𝗽𝗽𝗮𝘁𝗶, 𝐫𝐢𝐩𝐫𝐨𝐯𝐚 𝐭𝐫𝐚 𝐩𝐨𝐜𝐨 𝐧𝐞 𝐡𝐨 𝐛𝐢𝐬𝐨𝐠𝐧𝐨 ‼️' 
+      : '🔥🔫 𝐇𝐨 𝐬𝐩𝐚𝐰𝐧-𝐤𝐢𝐥𝐥𝐚𝐭𝐨 ' + deletedCount + ' 𝗵𝗮𝗻𝗱𝗶𝗰𝗮𝗽𝗽𝗮𝘁𝗶 !💀';
 
     await conn.sendMessage(m.chat, {
       text: textMsg
