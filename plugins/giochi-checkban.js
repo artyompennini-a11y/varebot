@@ -45,12 +45,9 @@ let handler = async (m, { conn, text, command, usedPrefix: prefix }) => {
 
 
 
-    await conn.sendMessage(m.chat, { 
-      text: reportText,
-      mentions: [target]
-    }, { quoted: m });
+    
 
-    await m.react('✅');
+      await m.react('✅');
     console.log(`[checkban] Scansione inviata con successo per: ${cleanNumber}`);
 
   } catch (err) {
