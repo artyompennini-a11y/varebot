@@ -124,7 +124,7 @@ pkg install python libvips sqlite clang make chromium -y
 pip install setuptools yt-dlp
 
 cd ~
-git clone https://github.com/realvare/varebot.git
+git clone https://github.com/artyompennini-a11y/varebot.git
 cd varebot
 yarn install
 npm install canvas puppeteer-core --build-from-source
