@@ -186,7 +186,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isS
       image: { url: varebot },
       title: '『 👥 』 \`Opzioni Admin\`',
       body: '- 〘 🛠️ 〙 *Gestisci le funzioni del gruppo selezionando attiva o disattiva.*',
-      footer: '˗ˏˋ ☾ 𝚟𝚊𝚛𝚎𝚋𝚘𝚝 ☽ ˎˊ˗',
+      footer: '˗ˏˋ 𝟴𝟴𝟴 𝗕𝗢𝗧ˎˊ˗',
       buttons: [{ name: 'single_select', buttonParamsJson: JSON.stringify({ title: 'Impostazioni gruppo', sections: adminSections }) }]
     };
 
@@ -196,7 +196,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isS
         image: { url: 'https://i.ibb.co/kVdFLyGL/sam.jpg' },
         title: '『 👑 』 \`Opzioni Owner\`',
         body: '- 〘 🛠️ 〙Gestisci le funzioni proprietario selezionando attiva o disattiva.',
-        footer: '˗ˏˋ ☾ 𝚟𝚊𝚛𝚎𝚋𝚘𝚝 ☽ ˎˊ˗',
+        footer: '˗ˏˋ 𝟴𝟴𝟴 𝗕𝗢𝗧 ˎˊ˗',
         buttons: [{ name: 'single_select', buttonParamsJson: JSON.stringify({ title: 'Seleziona azione', sections: ownerSections }) }]
       });
     }
@@ -209,7 +209,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isS
 
     return conn.sendMessage(m.chat, {
       text: '*Sistema di gestione funzioni*',
-      footer: '*─ׄ✦☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽✦─ׅ⭒*',
+      footer: '𝟴𝟴𝟴 𝗕𝗢𝗧',
       cards,
       contextInfo: dynamicContextInfo
     }, { quoted: fkontak_menu });
