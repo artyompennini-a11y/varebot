@@ -35,8 +35,6 @@ async function runYtDlp(args) {
         'python3 -m yt_dlp'
     ];
 
-    let lastError;
-
     for (const cmd of ytdlpCommands) {
         try {
             const command = `${cmd} ${args.join(' ')}`;
@@ -47,12 +45,11 @@ async function runYtDlp(args) {
 
             return { stdout, stderr };
         } catch (error) {
-            lastError = error;
             continue;
         }
     }
 
-    console.error('[ERROR] yt-dlp not found. Tried:', ytdlpCommands.join(', '));
+    console.error('[ERROR] yt-dlp not found.');
     throw new Error('YT_DLP_NOT_FOUND');
 }
 
@@ -104,7 +101,6 @@ async function getVideoInfo(url) {
             webpage_url: info.webpage_url || url
         };
     } catch (error) {
-        console.error('[ERROR] Failed to get video info:', error.message);
         const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)?.[1];
 
         return {
@@ -215,58 +211,43 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             return;
         }
 
-        const cardsPromises = searchResults.map(async (video, index) => {
-            const durationSec = video.duration?.seconds || parseDurationToSeconds(video.duration?.timestamp);
-            const isTooLong = durationSec > gonnabealongyr;
+        // COSTRUZIONE MENU SELEZIONE (Soluzione al problema dei pulsanti)
+        const rows = [];
+        searchResults.forEach((video, index) => {
             const durationStr = video.duration?.timestamp || '?';
-            const durationDisplay = isTooLong ? `⚠️ ${durationStr} (Max 20m)` : durationStr;
-
-            const views = video.views?.toLocaleString() || '?';
             const authorName = video.author?.name || 'Sconosciuto';
-            const shortTitle = video.title.substring(0, 70) + (video.title.length > 70 ? '...' : '');
+            const cleanTitle = video.title.substring(0, 30);
+            const videoUrl = `https://youtu.be/${video.videoId}`;
 
-            return {
-                image: { url: video.thumbnail },
-                title: `${index + 1}. ${shortTitle}`,
-                body: `『 👤 』 *${authorName}*\n『 ⏱️ 』 *${durationDisplay}* - 『 👁️ 』 *${views}*`,
-                footer: `˗ˏˋ𝟴𝟴𝟴 𝗕𝗢𝗧 ˎˊ˗`,
-                buttons: [
-                    {
-                        name: "quick_reply",
-                        buttonParamsJson: JSON.stringify({
-                          display_text: "🎵 Scarica Audio",
-                          id: `${prefix}playaudio https://youtu.be/${video.videoId}`
-                        })
-                    },
-                    {
-                        name: "quick_reply",
-                        buttonParamsJson: JSON.stringify({
-                          display_text: "📽️ Scarica video",
-                          id: `${prefix}playvideo https://youtu.be/${video.videoId}`
-                        })
-                    },
-                    {
-                        name: "cta_url",
-                        buttonParamsJson: JSON.stringify({
-                          display_text: "📲 Apri su YouTube",
-                          url: video.url
-                        })
-                    }
-                ]
-            };
+            rows.push({
+                title: `🎵 Audio: ${cleanTitle}`,
+                description: `👤 ${authorName} | ⏱️ ${durationStr}`,
+                rowId: `${prefix}playaudio ${videoUrl}`
+            });
+
+            rows.push({
+                title: `📽️ Video: ${cleanTitle}`,
+                description: `👤 ${authorName} | ⏱️ ${durationStr}`,
+                rowId: `${prefix}playvideo ${videoUrl}`
+            });
         });
 
-        const cards = await Promise.all(cardsPromises);
-
-        await conn.sendMessage(
-            m.chat,
+        const sections = [
             {
-                text: `『 🔍 』 *Risultati trovati per:*\n- ↳ *\`${text}\`*`,
-                footer: '𝟴𝟴𝟴 𝗕𝗢𝗧',
-                cards: cards
-            },
-            { quoted: m }
-        );
+                title: "Risultati YouTube",
+                rows: rows
+            }
+        ];
+
+        const listMessage = {
+            text: `『 🔍 』 *Risultati trovati per:*\n- ↳ *\`${text}\`*\n\nSeleziona un'opzione dal menu qui sotto per avviare il download:`,
+            footer: '𝟴𝟴𝟴 𝗕𝗢𝗧',
+            title: "Seleziona un Media",
+            buttonText: "📋 Mostra Risultati",
+            sections
+        };
+
+        await conn.sendMessage(m.chat, listMessage, { quoted: m });
 
     } catch (e) {
         console.error('[ERROR] Handler failed:', e.message);
@@ -383,8 +364,6 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                     }
                 }
             } catch (err) {
-                console.warn(`[WARN] Format ${format} failed:`, err.message);
-
                 const files = fs.readdirSync(tmpDir).filter(f => f.startsWith(`${command}_`));
                 files.forEach(f => {
                     try {
@@ -399,13 +378,10 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
         }
 
         if (!downloaded) {
-            console.error('[ERROR] All formats failed');
             throw new Error('download_failed');
         }
 
     } catch (e) {
-        console.error('[ERROR] Download media failed:', e.message);
-
         let errorMessage = '『 ❌ 』- \`Errore durante il download\`';
 
         if (e.message === 'YT_DLP_NOT_FOUND') {
@@ -419,10 +395,6 @@ Questo video potrebbe:
 - Non essere disponibile nella tua regione
 - Essere limitato per età
 - Richiedere l'accesso`;
-        } else if (e.message?.includes('not found') || e.message?.includes('ENOENT')) {
-            errorMessage = `『 ⚠️ 』 *yt-dlp non trovato!*`;
-        } else if (e.message?.includes('Sign in')) {
-            errorMessage = `${global.errore || 'Richiede il login'}`;
         }
 
         await conn.reply(m.chat, errorMessage, m);
