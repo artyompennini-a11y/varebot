@@ -4,7 +4,14 @@ let handler = async (m, { conn, text, command, usedPrefix: prefix }) => {
   try {
     console.log(`[checkban] Richiesta scansione da: ${m.sender} via ${command}`);
 
-    let target = m.quoted ? m.quoted.sender : m.mentionedJid?.[0] ? m.mentionedJid[0] : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : null;
+    let target = m.quoted
+      ? m.quoted.sender
+      : m.mentionedJid?.[0]
+      ? m.mentionedJid[0]
+      : text
+      ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+      : null;
+
     if (!target) {
       return m.reply(`⭔ *SISTEMA 888*\n\n💡 _Uso:_ Rispondi a qualcuno, taggalo o scrivi il numero.`);
     }
@@ -16,7 +23,7 @@ let handler = async (m, { conn, text, command, usedPrefix: prefix }) => {
     let databaseStatus = 'UNKNOWN';
 
     try {
-      if (global.db && global.db.data && global.db.data.users) {
+      if (global.db?.data?.users) {
         let userInDb = global.db.data.users[target];
         if (userInDb) {
           isBanned = userInDb.banned || false;
@@ -42,12 +49,11 @@ let handler = async (m, { conn, text, command, usedPrefix: prefix }) => {
 ┃ ⮕ *Stato:* ${isBanned ? '🔴 *BANNATO / LOCK*' : '🟢 *AUTORIZZATO / SAFE*'}
 ┃ ⮕ *Note:* ${isBanned ? 'Sospensione permanente da tutti i moduli.' : 'Nessuna anomalia riscontrata.'}
 ╰━━━━━━━━━━━━━━━━━━┈
+`;
 
+    await conn.sendMessage(m.chat, { text: reportText }, { quoted: m });
 
-
-    
-
-      await m.react('✅');
+    await m.react('✅');
     console.log(`[checkban] Scansione inviata con successo per: ${cleanNumber}`);
 
   } catch (err) {
