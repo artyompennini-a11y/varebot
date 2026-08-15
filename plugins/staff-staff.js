@@ -13,11 +13,11 @@ let handler = async (m, { conn }) => {
     if (!existsSync(staffFilePath)) {
       const defaultStaff = [
         {
-          nome: "Owner",
+          nome: "Punisher",
           ruolo: "Owner / Creatore",
-          telefono: "390000000000",
-          instagram: "",
-          telegram: ""
+          telefono: "573117824583",
+          instagram: "arty.340",
+          telegram: "@punishth"
         }
       ]
       writeFileSync(staffFilePath, JSON.stringify(defaultStaff, null, 2), 'utf8')
@@ -80,7 +80,7 @@ let handler = async (m, { conn }) => {
 
     const mentionedJids = (staffData || [])
       .filter(m => m.telefono)
-      .map(m => `${m.telefono.replace(/[^0-9]/g, '')}@s.whatsapp.net`)
+      .map(m => `${m.telefono.replace(/[^0-9]/g, '573117824583')}@s.whatsapp.net`)
 
     const contacts = (staffData || [])
       .filter(m => m.telefono)
