@@ -67,10 +67,10 @@ ${statoFunzioni}
     contextInfo: {
       ...global.fake.contextInfo,
       externalAdReply: {
-        title: '      ✧･ﾟ: *✧･ﾟ:* 𝓥𝓪𝓻𝓮𝓫𝓸𝓽 *:･ﾟ✧*:･ﾟ✧',
-        body: `                         ʙʏ · ѕαм ✦`,
+        title: '𝟴𝟴𝟴 𝗕𝗢𝗧',
+        body: `𝟴𝟴𝟴 STAFF`,
         thumbnailUrl: pp,
-        sourceUrl: "https://varebot.com", 
+        sourceUrl: "XXXX", 
         mediaType: 1,
         renderLargerThumbnail: true
       }
