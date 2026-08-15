@@ -3,7 +3,7 @@ import axios from 'axios'
 const d = {
     l: "│",
     di: "┠⭒─ׄ─ׅ─⭒─ׄ─ׅ─ׄ⭒─ׄ─ׅ─ׄ",
-    varebot: "*╭─ׄ✦☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽✦─ׅ⭒*",
+    varebot: "*𝟴𝟴𝟴-𝗕𝗢𝗧*",
     f: "*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*"
 }
 
@@ -83,7 +83,7 @@ ${d.l} • \`Tab Playlist:\` ${profileTab.showPlayListTab ? '📋 Si' : '❌ No'
 ${d.l} • \`Playlist Espanse:\` ${user.canExpPlaylist ? '✅ Si' : '❌ No'}
 ${d.f}
 
-> vare ✧ bot`
+> 𝟴𝟴𝟴-𝗕𝗢𝗧`
         if (profilePic) {
             try {
                 await conn.sendFile(m.chat, profilePic, 'profile.jpg', teks, m)
