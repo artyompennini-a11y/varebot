@@ -207,7 +207,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             await conn.sendMessage(m.chat, {
                 image: { url: videoInfo.thumbnail },
                 caption: captionMessage.trim(),
-                footer: '> \`vare ✧ bot\`',
+                footer: '> \`𝟴𝟴𝟴 𝗕𝗢𝗧\`',
                 contextInfo: global.fake.contextInfo
             }, { quoted: m });
 
@@ -229,7 +229,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
                 image: { url: video.thumbnail },
                 title: `${index + 1}. ${shortTitle}`,
                 body: `『 👤 』 *${author}*\n『 ⏱️ 』 *${durationDisplay}* - 『 👁️ 』 *${views}*`,
-                footer: `˗ˏˋ ☾ 𝚟𝚊𝚛𝚎𝚋𝚘𝚝 ☽ ˎˊ˗`,
+                footer: `˗ˏˋ𝟴𝟴𝟴 𝗕𝗢𝗧 ˎˊ˗`,
                 buttons: [
                     {
                         name: "quick_reply",
