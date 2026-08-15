@@ -114,8 +114,8 @@ if (!methodCodeQR && !methodCode && !fs.existsSync(`./${authFile}/creds.json`)) 
         const violet4 = chalk.hex('#5B2C6F');
         const softText = chalk.hex('#D7BDE2');
 
-        const a = violet1('╭━━━━━━━━━━━━━• ✧˚🩸 varebot 🕊️˚✧ •━━━━━━━━━━━━━');
-        const b = violet1('╰━━━━━━━━━━━━━• ☾⋆₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⋆☽ •━━━━━━━━━━━━━');
+        const a = violet1('╭━━━━━━━━━━━━━• ✧˚🩸 𝟴𝟴𝟴-𝗕𝗢𝗧 🕊️˚✧ •━━━━━━━━━━━━━');
+        const b = violet1('╰━━━━━━━━━━━━━• ☾⋆₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✧₊⋆☽ •━━━━━━━━━━━━━');
         const linea = violet2('   ✦━━━━━━✦✦━━━━━━༺༻━━━━━━༺༻━━━━━━✦✦━━━━━━✦');
         const sm = violet3('SELEZIONE METODO DI ACCESSO ✦');
         const qr = violet4(' ┌─⭓') + ' ' + chalk.bold.hex('#D2B4DE')('1. Scansione con QR Code');
@@ -343,13 +343,13 @@ async function connectionUpdate(update) {
             await global.reloadHandler(true).catch(console.error);
         } else if (reason === DisconnectReason.connectionLost) {
             if (!global.connectionMessagesPrinted.connectionLost) {
-                console.log(chalk.hex('#6349d8').bold(`\n╭⭑⭒━━━✦❘༻ ⚠️ CONNESSIONE PERSA COL SERVER ༺❘✦━━━⭒⭑\n┃ 🔄 RICONNESSIONE IN CORSO... \n╰⭑⭒━━━✦❘༻☾⋆₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⋆☽༺❘✦━━━⭒⭑`));
+                console.log(chalk.hex('#6349d8').bold(`\n╭⭑⭒━━━✦❘༻ ⚠️ CONNESSIONE PERSA COL SERVER ༺❘✦━━━⭒⭑\n┃ 🔄 RICONNESSIONE IN CORSO... \n╰⭑⭒━━━✦❘༻☾⋆₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✧₊⋆☽༺❘✦━━━⭒⭑`));
                 global.connectionMessagesPrinted.connectionLost = true;
             }
             await global.reloadHandler(true).catch(console.error);
         } else if (reason === DisconnectReason.connectionReplaced) {
             if (!global.connectionMessagesPrinted.connectionReplaced) {
-                console.log(chalk.hex('#6349d8').bold(`╭⭑⭒━━━✦❘༻ ⚠️ CONNESSIONE SOSTITUITA ༺❘✦━━━⭒⭑\n┃ È stata aperta un'altra sessione, \n┃ chiudi prima quella attuale.\n╰⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
+                console.log(chalk.hex('#6349d8').bold(`╭⭑⭒━━━✦❘༻ ⚠️ CONNESSIONE SOSTITUITA ༺❘✦━━━⭒⭑\n┃ È stata aperta un'altra sessione, \n┃ chiudi prima quella attuale.\n╰⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
                 global.connectionMessagesPrinted.connectionReplaced = true;
             }
         } else if (reason === DisconnectReason.loggedOut) {
@@ -370,7 +370,7 @@ async function connectionUpdate(update) {
             await global.reloadHandler(true).catch(console.error);
         } else if (reason === DisconnectReason.timedOut) {
             if (!global.connectionMessagesPrinted.timedOut) {
-                console.log(chalk.hex('#6349d8').bold(`\n╭⭑⭒━━━✦❘༻ ⌛ TIMEOUT CONNESSIONE ༺❘✦━━━⭒⭑\n┃ 🔄 RICONNESSIONE IN CORSO...\n╰⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
+                console.log(chalk.hex('#6349d8').bold(`\n╭⭑⭒━━━✦❘༻ ⌛ TIMEOUT CONNESSIONE ༺❘✦━━━⭒⭑\n┃ 🔄 RICONNESSIONE IN CORSO...\n╰⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
                 global.connectionMessagesPrinted.timedOut = true;
             }
             await global.reloadHandler(true).catch(console.error);
@@ -388,7 +388,7 @@ process.on('uncaughtException', console.error);
     try {
         conn.ev.on('connection.update', connectionUpdate);
         conn.ev.on('creds.update', saveCreds);
-        console.log(chalk.hex('#6349d8').bold(`⭑⭒━━━✦❘༻☾⋆⁺₊✧ varebot connesso correttamente ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
+        console.log(chalk.hex('#6349d8').bold(`⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 connesso correttamente ✧₊⁺⋆☽༺❘✦━━━⭒⭑`));
     } catch (error) {
         console.error(chalk.bold.bgRedBright(`🥀 Errore nell'avvio del bot: `, error));
     }
@@ -560,7 +560,7 @@ setInterval(async () => {
     if (global.stopped === 'close' || !conn || !conn.user) return;
     const deleted = clearDirectory(join(__dirname, 'temp'));
     if (deleted > 0) {
-        console.log(chalk.bold.greenBright(`\n╭⭑⭒━━━✦❘༻ 🟢 PULIZIA MULTIMEDIA 🟢 ༺❘✦━━━⭒⭑\n┃          ${deleted} FILE NELLA CARTELLA TEMP\n┃          ELIMINATI CON SUCCESSO\n╰⭑⭒━━━✦❘༻☾⋆⁺₊🗑️ 𝓿𝓪𝓻𝓮�𝓸𝓽 ♻️₊⁺⋆☽༺❘✦━━━⭒⭑`));
+        console.log(chalk.bold.greenBright(`\n╭⭑⭒━━━✦❘༻ 🟢 PULIZIA MULTIMEDIA 🟢 ༺❘✦━━━⭒⭑\n┃          ${deleted} FILE NELLA CARTELLA TEMP\n┃          ELIMINATI CON SUCCESSO\n╰⭑⭒━━━✦❘༻☾⋆⁺₊🗑️ 𝟴𝟴𝟴-𝗕𝗢𝗧 ♻️₊⁺⋆☽༺❘✦━━━⭒⭑`));
     }
 }, 1000 * 60 * 60);
 _quickTest().then(() => conn.logger.info(chalk.bold.magentaBright(``)));
