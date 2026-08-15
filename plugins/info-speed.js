@@ -66,7 +66,7 @@ const handler = async (m, { conn }) => {
 │ >_ \`Uptime Server:\` *${osUptime}*
 │ >_ \`Load Avg:\` *${loadAvg}*
 │
-╰⭑⭒━✦⋆ \`𝓿𝓪𝓻𝓮𝓫𝓸𝓽\` ⋆✦━⭒⭑
+╰⭑⭒━✦⋆ \`𝟴𝟴𝟴 𝗕𝗢𝗧\` ⋆✦━⭒⭑
 `.trim()
     await conn.sendPresenceUpdate('composing', m.chat)
     await conn.reply(m.chat, text, m, { ...global.rcanal })
