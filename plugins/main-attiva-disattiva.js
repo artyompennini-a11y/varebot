@@ -136,7 +136,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isS
   } else {
     dynamicContextInfo = {
       externalAdReply: {
-        title: "varebot",
+        title: "𝟴𝟴𝟴-𝗕𝗢𝗧",
         body: "Sistema di gestione funzioni",
         mediaType: 1,
         jpegThumbnail: groupProfilePicBuffer
