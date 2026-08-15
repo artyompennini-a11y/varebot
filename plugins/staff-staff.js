@@ -1,5 +1,5 @@
 // Plugin by Elixir & 888 staff
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs'
+import { readFileSync, existsSync, writeFileSync } from 'fs'
 import path, { join } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -7,13 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 let handler = async (m, { conn }) => {
   try {
-    const dataDir = join(__dirname, '../data')
-    const staffFilePath = join(dataDir, 'staff.json')
-
-    // Se la cartella data non esiste, la crea
-    if (!existsSync(dataDir)) {
-      mkdirSync(dataDir, { recursive: true })
-    }
+    const staffFilePath = join(__dirname, 'staff.json')
 
     // Se il file staff.json non esiste, ne crea uno di default
     if (!existsSync(staffFilePath)) {
