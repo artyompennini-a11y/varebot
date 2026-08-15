@@ -43,9 +43,7 @@ let handler = async (m, { conn, text, command, usedPrefix: prefix }) => {
 ┃ ⮕ *Note:* ${isBanned ? 'Sospensione permanente da tutti i moduli.' : 'Nessuna anomalia riscontrata.'}
 ╰━━━━━━━━━━━━━━━━━━┈
 
-> ⚠️ In caso di bug o problemi tecnici, 
-> utilizza il comando *${prefix || '#'}segnala* per 
-> segnalarlo subito allo staff.`.trim();
+
 
     await conn.sendMessage(m.chat, { 
       text: reportText,
