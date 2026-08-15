@@ -13,7 +13,7 @@ let handler = async (m, { conn }) => {
 
         const creatorCard = {
             image: { url: 'https://i.ibb.co/B29rgfjZ/sam.png' },
-            body: samakavare,
+            body: Punisher,
             footer: '',
             buttons: [
                 {
@@ -50,7 +50,7 @@ let handler = async (m, { conn }) => {
         await conn.sendMessage(
             m.chat,
             {
-                text: `ㅤ⋆｡˚『 ╭ \`𝘾𝙍𝙀𝘼𝙏𝙊𝙍𝙀\` ╯ 』˚｡⋆\n╭\n│ 『 👨‍💻 』 \`Sviluppatore:\` \n│ ➤  _*Sam aka Vare*_\n*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*`,
+                text: `ㅤ⋆｡˚『 ╭ \`𝘾𝙍𝙀𝘼𝙏𝙊𝙍𝙀\` ╯ 』˚｡⋆\n╭\n│ 『 👨‍💻 』 \`Sviluppatore:\` \n│ ➤  _*Punisher*_\n*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*`,
                 footer: '',
                 cards: [creatorCard]
             },
@@ -65,9 +65,9 @@ let handler = async (m, { conn }) => {
             samakavare += `『 👋 』 *Hey ${username}!*\n`
             samakavare += `- \`Ecco tutte le mie info per contattarmi:\`\n\n`
             samakavare += `『 📌 』 _*CONTATTI:*_\n`
-            samakavare += `┌─⭓ \`Nome:\`\n  *˙⋆✮*     *Sam aka Vare*\n`
-            samakavare += `├─⭓ \`Numero:\`\n  *˙⋆✮*     *wa.me/393476686131*\n`
-            samakavare += `├─⭓ \`Email:\`\n  *˙⋆✮*     *samakavare1@gmail.com*\n`
+            samakavare += `┌─⭓ \`Nome:\`\n  *˙⋆✮*     *Punisher*\n`
+            samakavare += `├─⭓ \`Numero:\`\n  *˙⋆✮*     *wa.me/573117824583*\n`
+            samakavare += `├─⭓ \`Email:\`\n  *˙⋆✮*     *thepunisher7894@gmail.com*\n`
             samakavare += `├─⭓ \`Instagram:\`\n  *˙⋆✮*     *samakavare*\n`
             samakavare += `├─⭓ \`GitHub:\`\n  *˙⋆✮*     *realvare*`
             
