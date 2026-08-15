@@ -23,6 +23,7 @@ const featureRegistry = [
   { key: 'rileva', store: 'chat', perm: PERM.ADMIN, aliases: ['detect'], groupOnly: true, name: '📡 Rileva', desc: 'Rileva eventi gruppo' },
   { key: 'antiporno', store: 'chat', perm: PERM.ADMIN, aliases: ['antiporn', 'antinsfw'], name: '🔞 Antiporno', desc: 'Antiporno' },
   { key: 'antigore', store: 'chat', perm: PERM.ADMIN, aliases: [], name: '🚫 Antigore', desc: 'Antigore' },
+  { key: 'antinuke', store: 'chat', perm: PERM.ADMIN, aliases: ['anti-nuke', 'antinuker'], groupOnly: true, name: '💥🚫 AntiNuke', desc: 'Protegge il gruppo da rimozioni o modifiche di massa' },
   { key: 'modoadmin', store: 'chat', perm: PERM.ADMIN, aliases: ['soloadmin'], name: '🛡️ Soloadmin', desc: 'Solo gli admin possono usare i comandi' },
   { key: 'ai', store: 'chat', perm: PERM.ADMIN, aliases: ['ia'], groupOnly: true, name: '🧠 IA', desc: 'Intelligenza artificiale' },
   { key: 'vocali', store: 'chat', perm: PERM.ADMIN, aliases: ['siri'], groupOnly: true, name: '🎤 Siri', desc: 'Risponde con audio agli audio e msg ricevuti' },
@@ -67,7 +68,7 @@ const adminkeyz = new Set([
   'welcome', 'goodbye', 'antispam', 'antisondaggi', 'antiparolacce',
   'antiBot', 'antitrava', 'antimedia', 'antioneview', 'antitagall',
   'autotrascrizione', 'autotraduzione', 'rileva', 'antiporno', 'antigore',
-  'modoadmin', 'ai', 'vocali', 'antivoip', 'antiLink', 'antiLinkUni',
+  'antinuke', 'modoadmin', 'ai', 'vocali', 'antivoip', 'antiLink', 'antiLinkUni',
   'antiLink2', 'reaction', 'autolevelup'
 ]);
 const ownerkeyz = new Set([
