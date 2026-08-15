@@ -5,11 +5,12 @@ import path from 'path'
 import ytSearch from 'yt-search'
 
 const execPromise = promisify(exec)
+
 const vic = new Map()
 const CACHE_TTL = 15 * 60 * 1000
 const gonnabealongyr = 20 * 60
 const A = [ 'bestaudio[ext=m4a]/bestaudio', '251', '140', 'bestaudio', 'best[height<=480]' ]
-const V = [ '135+140', '134+140', '136+140', '137+140',  /* Sti ultimi due hanno la maggior qualita ma pesano asf */]
+const V = [ '135+140', '134+140', '136+140', '137+140' ]
 const tmpDir = path.join(process.cwd(), 'temp')
 if (!fs.existsSync(tmpDir)) {
     fs.mkdirSync(tmpDir)
@@ -31,7 +32,6 @@ async function runYtDlp(args) {
         'python -m yt_dlp',
         path.join(process.cwd(), 'yt-dlp.exe'),
         path.join(process.cwd(), 'node_modules', '.bin', 'yt-dlp'),
-        'python -m yt_dlp',
         'python3 -m yt_dlp'
     ];
 
@@ -192,13 +192,13 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             }
 
             const title = videoInfo.title.replace(/[<>:"/\\|?*]/g, '_').substring(0, 70);
-            const author = videoInfo.uploader.substring(0, 25);
+            const authorName = videoInfo.uploader.substring(0, 25);
             const views = videoInfo.view_count ? parseInt(videoInfo.view_count).toLocaleString() : '?';
 
             const captionMessage = `
 *╭─ׄ✦☾⋆⁺₊✧𝟴𝟴𝟴 𝗕𝗢𝗧✧₊⁺⋆☽✦─ׅ⭒*
 *├* *\`${title}\`*
-*├* 👤 \`Autore:\` *${author}*
+*├* 👤 \`Autore:\` *${authorName}*
 *├* 👁️ \`Views:\` *${views}*
 *├* ⏱️ \`Durata:\` *${videoInfo.duration_string}*
 *╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -208,7 +208,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
                 image: { url: videoInfo.thumbnail },
                 caption: captionMessage.trim(),
                 footer: '> \`𝟴𝟴𝟴 𝗕𝗢𝗧\`',
-                contextInfo: global.fake.contextInfo
+                contextInfo: global.fake?.contextInfo || {}
             }, { quoted: m });
 
             await downloadMedia(m, conn, command, firstVideo.url, prefix, videoInfo, isSearchQuery);
@@ -222,27 +222,27 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             const durationDisplay = isTooLong ? `⚠️ ${durationStr} (Max 20m)` : durationStr;
 
             const views = video.views?.toLocaleString() || '?';
-            const author = video.author?.name || 'Sconosciuto';
+            const authorName = video.author?.name || 'Sconosciuto';
             const shortTitle = video.title.substring(0, 70) + (video.title.length > 70 ? '...' : '');
 
             return {
                 image: { url: video.thumbnail },
                 title: `${index + 1}. ${shortTitle}`,
-                body: `『 👤 』 *${author}*\n『 ⏱️ 』 *${durationDisplay}* - 『 👁️ 』 *${views}*`,
+                body: `『 👤 』 *${authorName}*\n『 ⏱️ 』 *${durationDisplay}* - 『 👁️ 』 *${views}*`,
                 footer: `˗ˏˋ𝟴𝟴𝟴 𝗕𝗢𝗧 ˎˊ˗`,
                 buttons: [
                     {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
                           display_text: "🎵 Scarica Audio",
-                          id: `${prefix}playaudio ${video.url}`
+                          id: `${prefix}playaudio https://youtu.be/${video.videoId}`
                         })
                     },
                     {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
                           display_text: "📽️ Scarica video",
-                          id: `${prefix}playvideo ${video.url}`
+                          id: `${prefix}playvideo https://youtu.be/${video.videoId}`
                         })
                     },
                     {
@@ -321,7 +321,6 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
         const formats = (command === 'playvideo') ? V : A;
 
         let downloaded = false;
-        let lastError = null;
 
         for (let i = 0; i < formats.length; i++) {
             const format = formats[i];
@@ -330,7 +329,6 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                 await download(url, tmpFile, format, extractAudio);
                 await new Promise(resolve => setTimeout(resolve, 1500));
 
-                const files = fs.readdirSync(tmpDir).filter(f => f.startsWith(`${command}_`));
                 let actualFile = tmpFile;
 
                 if (extractAudio && !fs.existsSync(tmpFile)) {
@@ -348,6 +346,7 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                         await fs.promises.unlink(actualFile).catch(() => {});
 
                         const safeTitle = videoInfo ? videoInfo.title.replace(/[<>:"/\\|?*]/g, '_').substring(0, 20) : 'media';
+                        const fakeContext = global.fake?.contextInfo || {};
 
                         if (command === 'playvideo') {
                             await conn.sendMessage(m.chat, {
@@ -355,7 +354,7 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                                 mimetype: 'video/mp4',
                                 fileName: `${safeTitle}.mp4`,
                                 caption: `> \`𝟴𝟴𝟴 𝗕𝗢𝗧\``,
-                                contextInfo: global.fake.contextInfo
+                                contextInfo: fakeContext
                             }, { quoted: m });
                         } else {
                             await conn.sendMessage(m.chat, {
@@ -364,10 +363,10 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                                 fileName: `${safeTitle}.mp3`,
                                 ptt: false,
                                 contextInfo: {
-                                    ...global.fake.contextInfo,
+                                    ...fakeContext,
                                     externalAdReply: {
-                                        ...global.fake.contextInfo,
-                                        title: `${videoInfo?.title} - ${author?.name}`,
+                                        ...fakeContext,
+                                        title: `${videoInfo?.title || 'Audio'} - ${videoInfo?.uploader || 'YouTube'}`,
                                         body: '𝟴𝟴𝟴 𝗕𝗢𝗧',
                                         thumbnailUrl: videoInfo ? videoInfo.thumbnail : null,
                                         mediaType: 1,
@@ -385,7 +384,6 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                 }
             } catch (err) {
                 console.warn(`[WARN] Format ${format} failed:`, err.message);
-                lastError = err;
 
                 const files = fs.readdirSync(tmpDir).filter(f => f.startsWith(`${command}_`));
                 files.forEach(f => {
@@ -424,7 +422,7 @@ Questo video potrebbe:
         } else if (e.message?.includes('not found') || e.message?.includes('ENOENT')) {
             errorMessage = `『 ⚠️ 』 *yt-dlp non trovato!*`;
         } else if (e.message?.includes('Sign in')) {
-            errorMessage = `${global.errore}`;
+            errorMessage = `${global.errore || 'Richiede il login'}`;
         }
 
         await conn.reply(m.chat, errorMessage, m);
