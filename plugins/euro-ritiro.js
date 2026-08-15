@@ -25,7 +25,7 @@ let handler = async (m, { args, conn, usedPrefix, command }) => {
     return await conn.sendMessage(m.chat, {
       text: message,
       buttons: buttons,
-      footer: '✧˚🩸 varebot 🕊️˚✧',
+      footer: '✧˚🩸 𝟴𝟴𝟴-𝗕𝗢𝗧 🕊️˚✧',
       headerType: 1
     }, { quoted: m })
   }
