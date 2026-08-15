@@ -68,7 +68,7 @@ let handler = async (m, { conn }) => {
             samakavare += `┌─⭓ \`Nome:\`\n  *˙⋆✮*     *Punisher*\n`
             samakavare += `├─⭓ \`Numero:\`\n  *˙⋆✮*     *wa.me/573117824583*\n`
             samakavare += `├─⭓ \`Email:\`\n  *˙⋆✮*     *thepunisher7894@gmail.com*\n`
-            samakavare += `├─⭓ \`Instagram:\`\n  *˙⋆✮*     *samakavare*\n`
+            samakavare += `├─⭓ \`Instagram:\`\n  *˙⋆✮*     *arty.340*\n`
             samakavare += `├─⭓ \`GitHub:\`\n  *˙⋆✮*     *realvare*`
             
             const buttons = [
@@ -121,7 +121,7 @@ let handler = async (m, { conn }) => {
                                     {
                                         type: 'pix_static_code',
                                         pix_static_code: {
-                                            merchant_name: 'samakavare',
+                                            merchant_name: 'Punisher',
                                             key: '+573117824583',
                                             key_type: 'PHONE',
                                         }
