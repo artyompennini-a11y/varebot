@@ -5,7 +5,7 @@ const defaultMenu = {
   header: 'ㅤㅤ⋆｡˚『 ╭ \`MENU PREMIUM\` ╯ 』˚｡⋆\n╭',
   body: '│ ➤ 『 🉐 』 %cmd', 
   footer: '*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*\n',
-  after: `> ⋆｡°✩ 𝖛𝖆𝖗𝖊𝖇𝖔𝖙 ✩°｡⋆`.trimEnd()
+  after: `> ⋆｡°✩ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✩°｡⋆`.trimEnd()
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
