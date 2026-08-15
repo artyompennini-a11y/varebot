@@ -1,154 +1,38 @@
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// Plugin by Elixir, Punisher & 888 staff
 
-const MAX_POLLING_TIME = 3600000; // 1 ora (in ms)
-const CHECK_INTERVAL = 60000; // 1 minuto (in ms)
+const manually = `𝐆𝐑𝐔𝐏𝐏𝐈 𝐔𝐅𝐅𝐈𝐂𝐈𝐀𝐋𝐈:
 
-let spamProcesses = {}; // Oggetto per salvare lo stato dei processi di spam
+╭───⭓
+│ 🗨️ ᒪᑌᑎᗩᖇᔕ
+│ https://chat.whatsapp.com/Dxfu8kYcAhaIVZIVdKwGRc
+│
+│ 🗨️ ꪶ爻ꫂ ղҽօղ ꪶ☾ꫂ
+│ https://chat.whatsapp.com/DjDBrPXWZLOCAoHMA1oNND
+│
+│ 🗨️ 𝓖𝓸𝓬𝓬𝓲𝓸𝓵𝓮
+│ https://chat.whatsapp.com/JODMBEoCYRuCfxp9xhLjR1
+│
+│ 🗨️ Eception🖤⌛️‼️
+│ https://chat.whatsapp.com/DKcxx1fW5hp9gSmHzj4HPw
+│
+│ 🗨️ ᙭ᗩ𝑁𝐴𝑿
+│ https://chat.whatsapp.com/BkhhYNYyiaE19msAf5QDpc
+╰───⭓`
+import { generateWAMessageFromContent } from '@realvare/baileys'
+const handler = async (m, { args, text }) => {
+if (parseInt(args[1])) return m.reply(`Inserisci prima la quantità di messaggi da inviare e poi il testo`)
+if (!parseInt(args[0])) return m.reply(`Inserisci nel comando la quantità di messaggi da inviare`)
+var number = parseInt(args[0]) ? parseInt(args[0]) : 1
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  const args = text.split('|').map(v => v.trim());
-
-  if (args.length < 3) {
-    return m.reply(`> 🍡 *Formato corretto:*\nLink gruppo | Messaggio | Quantità\n\n*Esempio:*\n${usedPrefix + command} https://chat.whatsapp.com/Link | Ciao | 5`);
-  }
-
-  const [groupLink, message, countStr] = args;
-  const count = parseInt(countStr, 10);
-  if (!groupLink.includes('chat.whatsapp.com/')) {
-    return m.reply('🚫 *Link del gruppo non valido*');
-  }
-  if (isNaN(count) || count <= 0 || count > 50) {
-    return m.reply('🔢 *Inserisci un numero valido tra 1 e 50*');
-  }
-
-  const code = groupLink.split('chat.whatsapp.com/')[1];
-  let waitingMsg;
-  let groupId;
-
-  try {
-    const sentMsg = await conn.sendMessage(m.chat, { text: '🔄 *Analisi gruppo in corso...*' }, { quoted: m });
-    waitingMsg = sentMsg.key; // Salva la key del messaggio
-    try {
-      const groupInfo = await conn.groupGetInviteInfo(code).catch(() => null);
-      if (!groupInfo) throw new Error('invalid_group');
-      
-      groupId = groupInfo.id;
-      console.log('groupId:', groupId); // Aggiunto log
-      await conn.sendMessage(m.chat, { text: '🚀 *Tentativo di accesso...*', edit: waitingMsg }, { quoted: m });
-      try {
-        console.log('Tentativo di accesso al gruppo...'); // Aggiunto log
-        await conn.groupAcceptInvite(code);
-      } catch (err) {
-        if (err.message.includes('already-exists')) {
-          console.warn('Bot già presente nel gruppo');
-        } else if (err.message.includes('conflict')) {
-          console.warn('Conflitto durante l\'accesso, potrebbe essere già nel gruppo');
-        } else {
-          console.error('Errore durante l\'accesso:', err);
-          throw err; // Rilancia l'errore per essere gestito nel catch esterno
-        }
-      }
-      let processId = Date.now(); // ID univoco per il processo
-      spamProcesses[processId] = {
-        groupId: groupId,
-        isAccepted: false,
-        waitingMsg: waitingMsg,
-        message: message,
-        count: count,
-        startTime: Date.now(),
-        code: code,
-        conn: conn
-      };
-      startPolling(processId, m, message); // Passa m e message come parametro
-
-    } catch (e) {
-      console.error('Errore durante la verifica del gruppo:', e);
-      return m.reply('❌ *Errore durante l\'analisi del gruppo*');
-    }
-
-  } catch (error) {
-    console.error('Errore spam:', error);
-    m.reply(`⚠️ *Errore durante l'operazione*\n${error.message}`);
-  }
-};
-
-async function startPolling(processId, m, message) { // Aggiunto m e message come parametro
-  let processData = spamProcesses[processId];
-  if (!processData) return; // Processo non trovato
-
-  let { groupId, isAccepted, waitingMsg, count, startTime, code, conn } = processData;
-
-  if (isAccepted) {
-    console.log('Inizio spam (dopo polling)...');
-    await executeSpam(processId, m, message); // Passa m e message come parametro
-    return;
-  }
-
-  if (Date.now() - startTime > MAX_POLLING_TIME) {
-    console.log('Tempo massimo di polling raggiunto');
-    delete spamProcesses[processId];
-    console.log('⌛ Tempo massimo di attesa raggiunto. Riprova più tardi');
-    return;
-  }
-
-  try {
-    const groupMetadata = await conn.groupMetadata(groupId).catch(() => null);
-    if (groupMetadata && groupMetadata.participants.some(p => p.id === conn.user.jid)) {
-      console.log('Bot trovato nella lista partecipanti (dopo polling)');
-      spamProcesses[processId].isAccepted = true;
-      await executeSpam(processId, m, message); // Passa m e message come parametro
-      return;
-    } else {
-      console.log('Bot non ancora trovato nel gruppo (dopo polling)');
-    }
-  } catch (err) {
-    console.warn('Errore durante il tentativo di ottenere i partecipanti (dopo polling):', err);
-  }
-  setTimeout(() => {
-    startPolling(processId, m, message); // Passa m e message come parametro
-  }, CHECK_INTERVAL);
-}
-
-async function executeSpam(processId, m, message) { // Aggiunto m e message come parametro
-  let processData = spamProcesses[processId];
-  if (!processData) return;
-
-  let { groupId, waitingMsg, count, conn } = processData;
-
-  try {
-    await conn.sendMessage(m.chat, { text: '✨ *Iniziando spam...*', edit: waitingMsg }, { quoted: m });
-    const messages = Array(count).fill(message); // messages è definito qui
-    const batchSize = 10; // Aumenta la dimensione del batch
-    let successCount = 0;
-
-    for (let i = 0; i < messages.length; i += batchSize) {
-      const batch = messages.slice(i, i + batchSize);
-      const results = await Promise.allSettled(
-        batch.map(msg => 
-          conn.sendMessage(groupId, { text: msg })
-        )
-      );
-      
-      successCount += results.filter(r => r.status === 'fulfilled').length;
-      await delay(1000); // Riduci il delay
-    }
-
-    await conn.sendMessage(m.chat, { text: `✅ *Spam completato!*\n📨 Inviati: ${successCount}/${count}`, edit: waitingMsg }, { quoted: m });
-  } catch (err) {
-    console.error('Errore durante lo spam:', err);
-    return m.reply('❌ *Errore durante l\'invio dei messaggi*');
-  } finally {
-    try {
-      await conn.groupLeave(groupId);
-    } catch {}
-    delete spamProcesses[processId]; // Rimuovi il processo completato
-  }
-}
-
-handler.help = ['spam'];
-handler.tags = ['creatore'];
-handler.command = ['spam'];
-handler.mods = true;
-handler.premium = true;
-
-export default handler;
+var count = 0
+while(true) {
+count++
+const msg = conn.cMod(m.chat, generateWAMessageFromContent(m.chat, { ['extendedTextMessage'] : { text: args[1] ? text.replace(args[0] + ' ', []) : manually } }, { userJid: conn.user.id }), null, conn.user.jid, { mentions: conn.chats[m.chat].metadata.participants.map(u => conn.decodeJid(u.id)) })
+await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+if (count===parseInt(args[0])) break
+}}
+handler.command = ['spam']
+handler.help = ['𝐬𝐩𝐚𝐦'];
+handler.tags = ['owner']
+handler.owner = true
+export default handler
