@@ -1,7 +1,7 @@
 import { existsSync, promises as fsPromises } from 'fs';
 import path from 'path';
 
-const handler = async (m, { conn, usedPrefix }) => {
+const handler = async (m, { conn }) => {
   if (global.conn.user.jid !== conn.user.jid) {
     return conn.sendMessage(m.chat, {
       text: "*🚨 𝐔𝐭𝐢𝐥𝐢𝐳𝐳𝐢 𝐪𝐮𝐞𝐬𝐭𝐨 𝐜𝐨𝐦𝐚𝐧𝐝𝐨 𝐝𝐢𝐫𝐞𝐭𝐭𝐚𝐦𝐞𝐧𝐭𝐞 𝐧𝐞𝐥 𝐧𝐮𝐦𝐞𝐫𝐨 𝐝𝐞𝐥 𝐛𝐨𝐭.*"
@@ -13,7 +13,7 @@ const handler = async (m, { conn, usedPrefix }) => {
 
     if (!existsSync(sessionFolder)) {
       return await conn.sendMessage(m.chat, {
-        text: "*❌ 𝐍𝐨𝐧 𝐜𝐢 𝐬𝐨𝐧𝐨 𝐡𝐚𝐧𝐝𝐢𝐜𝐚𝐩𝐩𝐚𝐭𝐢  o 𝐧𝐨𝐧 𝐞𝐬𝐢𝐬𝐭𝐨𝐧𝐨.*"
+        text: "*❌ 𝐍𝐨𝐧 𝐜𝐢 𝐬𝐨𝐧𝐨 sessioni o 𝐧𝐨𝐧 𝐞𝐬𝐢𝐬𝐭𝐨𝐧𝐨.*"
       }, { quoted: m });
     }
 
@@ -28,24 +28,22 @@ const handler = async (m, { conn, usedPrefix }) => {
     }
 
     const textMsg = deletedCount === 0 
-      ? '❗ 𝐍𝐢𝐞𝐧𝐭𝐞 𝐡𝐚𝐧𝐝𝐢𝐜𝐚𝐩𝐩𝐚𝐭𝐢, 𝐫𝐢𝐩𝐫𝐨𝐯𝐚 𝐭𝐫𝐚 𝐩𝐨𝐜𝐨 𝐧𝐞 𝐡𝐨 𝐛𝐢𝐬𝐨𝐠𝐧𝐨 ‼️' 
-      : '🔥🔫 𝐇𝐨 𝐬𝐩𝐚𝐰𝐧-𝐤𝐢𝐥𝐥𝐚𝐭𝐨 ' + deletedCount + ' 𝗲𝗯𝗿𝗲𝗶 !💀';
+      ? '❗ 𝐍𝐢𝐞𝐧𝐭𝐞 sessioni, 𝐫𝐢𝐩𝐫𝐨𝐯𝐚 𝐭𝐫𝐚 𝐩𝐨𝐜𝐨 𝐧𝐞 𝐡𝐨 𝐛𝐢𝐬𝐨𝐠𝐧𝐨 ‼️' 
+      : '🔥🔫 𝐇𝐨 𝐬𝐩𝐚𝐰𝐧-𝐤𝐢𝐥𝐥𝐚𝐭𝐨 ' + deletedCount + ' sessioni !💀';
 
     await conn.sendMessage(m.chat, {
-      text: textMsg,
-     
-      ],
-      headerType: 1
+      text: textMsg
     }, { quoted: m });
 
   } catch (error) {
+    console.error('Errore durante l\'eliminazione delle sessioni:', error);
     await conn.sendMessage(m.chat, { text: "❌ 𝐄𝐫𝐫𝐨𝐫𝐞 𝐝𝐢 𝐞𝐥𝐢𝐦𝐢𝐧𝐚𝐳𝐢𝐨𝐧𝐞!" }, { quoted: m });
   }
 };
 
-handler.help = ['del_reg_in_session_owner'];
+handler.help = ['deletession'];
 handler.tags = ["owner"];
 handler.command = /^(deletession|ds)$/i;
-handler.admin = true;
+handler.owner = true;
 
 export default handler;
