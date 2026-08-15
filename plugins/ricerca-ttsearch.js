@@ -47,7 +47,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
             {
                 text: `『 🔍 』 \`Risultati per:\` `,
                 title: '',
-                subtitle: 'varebot',
+                subtitle: '𝟴𝟴𝟴-𝗕𝗢𝗧',
                 footer: `*${text}*`,
                 cards: cards
             },
