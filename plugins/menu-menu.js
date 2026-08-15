@@ -19,7 +19,7 @@ const defaultMenu = {
   footer: '*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*\n',
   after: ``,
 }
-const swag = 'https://i.ibb.co/hJW7WwxV/varebot.jpg';
+
 function detectDevice(msgID) {
   if (!msgID) {
     return 'unknown'; 
@@ -115,25 +115,16 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       }));
 
       const buttonMessage = {
-        image: { url: swag },
-        caption: text.trim(),
+        text: text.trim(),
         footer: "",
         buttons: buttons,
-        headerType: 4
+        headerType: 1
       };
 
       await conn.sendMessage(m.chat, buttonMessage, { quoted: m });
       
     } else {
       if (isGroup) {
-        let thumbnailBuffer;
-        try {
-          const response = await fetch(swag);
-          thumbnailBuffer = Buffer.from(await response.arrayBuffer());
-        } catch {
-          thumbnailBuffer = Buffer.alloc(0);
-        }
-
         await conn.sendMessage(m.chat, {
           interactiveButtons: [{
             name: "single_select",
@@ -163,8 +154,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
           }],
           text: text.trim(),
           title: " ",
-          footer: "",
-          media: { image: thumbnailBuffer }
+          footer: ""
         }, { quoted: m });
       } else {
         const sections = [
@@ -188,14 +178,6 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
             ]
           }
         ];
-
-        let thumbnailBuffer;
-        try {
-          const response = await fetch(swag);
-          thumbnailBuffer = Buffer.from(await response.arrayBuffer());
-        } catch {
-          thumbnailBuffer = null;
-        }
 
         await conn.sendMessage(m.chat, {
           text: text.trim(),
