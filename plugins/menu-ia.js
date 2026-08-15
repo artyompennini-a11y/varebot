@@ -24,7 +24,7 @@ const defaultMenu = {
   header: '      ⋆｡˚『 %category 』˚｡⋆\n╭',
   body: '*│ ➤* 『%emoji』 %cmd',
   footer: '*╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*\n',
-  after: `> ⋆｡°✩ 𝖛𝖆𝖗𝖊𝖇𝖔𝖙 ✩°｡⋆`,
+  after: `> ⋆｡°✩ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✩°｡⋆`,
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
