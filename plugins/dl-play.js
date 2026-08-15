@@ -140,7 +140,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
 *├* _${prefix}play Charge me Future_
 *├* _${prefix}playaudio https://youtu.be/gLNpPiUpJ4w_
 *╰⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
-> \`vare ✧ bot\``;
+> \`𝟴𝟴𝟴 𝗕𝗢𝗧\``;
         await conn.reply(m.chat, helpMessage.trim(), m);
         return;
     }
@@ -196,7 +196,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             const views = videoInfo.view_count ? parseInt(videoInfo.view_count).toLocaleString() : '?';
 
             const captionMessage = `
-*╭─ׄ✦☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽✦─ׅ⭒*
+*╭─ׄ✦☾⋆⁺₊✧𝟴𝟴𝟴 𝗕𝗢𝗧✧₊⁺⋆☽✦─ׅ⭒*
 *├* *\`${title}\`*
 *├* 👤 \`Autore:\` *${author}*
 *├* 👁️ \`Views:\` *${views}*
@@ -262,7 +262,7 @@ let handler = async (m, { conn, command, text, usedprefix }) => {
             m.chat,
             {
                 text: `『 🔍 』 *Risultati trovati per:*\n- ↳ *\`${text}\`*`,
-                footer: 'vare ✧ bot',
+                footer: '𝟴𝟴𝟴 𝗕𝗢𝗧',
                 cards: cards
             },
             { quoted: m }
@@ -354,7 +354,7 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                                 video: buffer,
                                 mimetype: 'video/mp4',
                                 fileName: `${safeTitle}.mp4`,
-                                caption: `> \`vare ✧ bot\``,
+                                caption: `> \`𝟴𝟴𝟴 𝗕𝗢𝗧\``,
                                 contextInfo: global.fake.contextInfo
                             }, { quoted: m });
                         } else {
@@ -368,7 +368,7 @@ async function downloadMedia(m, conn, command, url, prefix, preloadedVideoInfo =
                                     externalAdReply: {
                                         ...global.fake.contextInfo,
                                         title: `${videoInfo?.title} - ${author?.name}`,
-                                        body: '⋆⭑˚₊ 𝓥𝓪𝓻𝓮𝓫𝓸𝓽 ₊˚⭑⋆',
+                                        body: '𝟴𝟴𝟴 𝗕𝗢𝗧',
                                         thumbnailUrl: videoInfo ? videoInfo.thumbnail : null,
                                         mediaType: 1,
                                         renderLargerThumbnail: false,
