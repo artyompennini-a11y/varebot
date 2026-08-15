@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 let handler = async (m, { conn }) => {
-  const staffData = JSON.parse(readFileSync(join(__dirname, '../data/staff.json'), 'utf8'))
+  const staffData = JSON.parse(readFileSync(join(__dirname, '../staff.json'), 'utf8'))
 
   const botName = global.db?.data?.nomedelbot || global.nomebot || "𝟴𝟴𝟴 𝗕𝗢𝗧"
   const botVersion = global.versione || global.db?.data?.version || "1.0"
