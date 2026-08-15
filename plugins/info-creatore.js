@@ -2,14 +2,14 @@ let handler = async (m, { conn }) => {
     try {
         let username = await conn.getName(m.sender)
         let samakavare = `ㅤㅤ⋆｡˚『 ╭ \`CREATORE\` ╯ 』˚｡⋆\n╭\n`
-        samakavare += `『 👋 』 *Hey ${username}!*\n`
-        samakavare += `- \`Ecco tutte le informazioni  per contattarmi:\`\n\n`
-        samakavare += `『 📌 』 _*CONTATTI:*_\n`
-        samakavare += `┌─⭓ \`Nome:\`\n  *˙⋆✮*     *Sam aka Vare*\n`
-        samakavare += `├─⭓ \`Numero:\`\n  *˙⋆✮*     *wa.me/393476686131*\n`
-        samakavare += `├─⭓ \`Email:\`\n  *˙⋆✮*     *samakavare1@gmail.com*\n`
-        samakavare += `├─⭓ \`Instagram:\`\n  *˙⋆✮*     *samakavare*\n`
-        samakavare += `├─⭓ \`GitHub:\`\n  *˙⋆✮*     *realvare*`
+         Punisher  += `『 👋 』 *Hey ${username}!*\n`
+         Punisher  += `- \`Ecco tutte le informazioni  per contattarmi:\`\n\n`
+         Punisher  += `『 📌 』 _*CONTATTI:*_\n`
+         Punisher  += `┌─⭓ \`Nome:\`\n  *˙⋆✮*     *Punisher*\n`
+         Punisher. += `├─⭓ \`Numero:\`\n  *˙⋆✮*     *wa.me/573117824583*\n`
+         Punisher  += `├─⭓ \`Email:\`\n  *˙⋆✮*     *thepunisher7894@gmail.com*\n`
+         Punisher. += `├─⭓ \`Instagram:\`\n  *˙⋆✮*     *samakavare*\n`
+         Punisher. += `├─⭓ \`GitHub:\`\n  *˙⋆✮*     *realvare*`
 
         const creatorCard = {
             image: { url: 'https://i.ibb.co/B29rgfjZ/sam.png' },
@@ -27,21 +27,21 @@ let handler = async (m, { conn }) => {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '💬 WhatsApp',
-                        url: 'https://wa.me/393476686131'
+                        url: 'https://wa.me/573117824583'
                     })
                 },
                 {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '📸 Instagram',
-                        url: 'https://instagram.com/samakavare'
+                        url: 'https://www.instagram.com/arty.340?igsh=ZGxranlrczNybHJ0'
                     })
                 },
                 {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '📧 Email',
-                        url: 'mailto:samakavare1@gmail.com'
+                        url: 'mailto: thepunisher7894@gmail.com'
                     })
                 },
             ]
@@ -83,21 +83,21 @@ let handler = async (m, { conn }) => {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '『 📱 』 WhatsApp',
-                        url: 'https://wa.me/393476686131'
+                        url: 'https://wa.me/573117824583'
                     })
                 },
                 {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '『 📸 』 Instagram',
-                        url: 'https://instagram.com/samakavare'
+                        url: 'https://www.instagram.com/arty.340?igsh=ZGxranlrczNybHJ0'
                     })
                 },
                 {
                     name: 'cta_url',
                     buttonParamsJson: JSON.stringify({
                         display_text: '『 📧 』 Email',
-                        url: 'mailto:samakavare1@gmail.com'
+                        url: 'mailto: thepunisher7894@gmail.com'
                     })
                 }
             ]
@@ -112,7 +112,7 @@ let handler = async (m, { conn }) => {
             await conn.sendMessage(
                 m.chat,
                 {
-                    text: 'by samakavare', // non visualizzabile, lascia i credits
+                    text: 'by Punisher', // non visualizzabile, lascia i credits
                     interactiveButtons: [
                         {
                             name: 'payment_info',
@@ -122,7 +122,7 @@ let handler = async (m, { conn }) => {
                                         type: 'pix_static_code',
                                         pix_static_code: {
                                             merchant_name: 'samakavare',
-                                            key: '+393476686131',
+                                            key: '+573117824583',
                                             key_type: 'PHONE',
                                         }
                                     }
@@ -138,7 +138,7 @@ let handler = async (m, { conn }) => {
             console.error('Errore anche nel fallback:', fallbackError);
             // Ultimo tentativo: solo testo
             let username = await conn.getName(m.sender)
-            await conn.reply(m.chat, `👋 Hey ${username}!\n\n👨‍💻 *Creatore: Sam aka Vare*\n\n📱 WhatsApp: wa.me/393476686131\n📧 Email: samakavare1@gmail.com\n📸 Instagram: samakavare\n💻 GitHub: realvare`, m);
+            await conn.reply(m.chat, `👋 Hey ${username}!\n\n👨‍💻 *Creatore: Punisher*\n\n📱 WhatsApp: wa.me/573117824583\n📧 Email: thepunisher7894@gmail.com\n📸 Instagram: arty.340\n💻 GitHub: realvare`, m);
         }
     }
 }
