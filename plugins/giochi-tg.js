@@ -92,7 +92,7 @@ async function createNewsImage(newsTitle, backgroundUrl) {
   ctx.fillText(newsTime, 30, 705)
   
   // News channel branding
-  const channels = ['TG VAREBOT', 'VAREBOT 24', 'SKY VAREBOT']
+  const channels = ['TG 𝟴𝟴𝟴-𝗕𝗢𝗧', '𝟴𝟴𝟴-𝗕𝗢𝗧 24', 'SKY 𝟴𝟴𝟴-𝗕𝗢𝗧']
   const newsChannel = channels[Math.floor(Math.random() * channels.length)]
   ctx.font = 'bold italic 32px "Sans"'
   ctx.textAlign = 'right'
