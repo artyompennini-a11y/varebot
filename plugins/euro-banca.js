@@ -288,7 +288,7 @@ const BankCard = ({ user, name, pfpUrl }) => {
             React.createElement('div', { className: 'container' },
                 React.createElement('div', { className: 'bg-pattern' }),
                 React.createElement('div', { className: 'header' },
-                    React.createElement('div', { className: 'brand-pill' }, 'VareBot Obsidian'),
+                    React.createElement('div', { className: 'brand-pill' }, '𝟴𝟴𝟴-𝗕𝗢𝗧 Obsidian'),
                     React.createElement('img', { src: pfpUrl, className: 'avatar' })
                 ),
                 React.createElement('div', { className: 'balance-section' },
@@ -300,7 +300,7 @@ const BankCard = ({ user, name, pfpUrl }) => {
                     
                     React.createElement('div', { className: 'card-top' },
                         React.createElement('div', { className: 'chip' }),
-                        React.createElement('div', { className: 'card-bank-name' }, 'VAREBOT')
+                        React.createElement('div', { className: 'card-bank-name' }, '𝟴𝟴𝟴-𝗕𝗢𝗧')
                     ),
 
                     React.createElement('div', { className: 'card-number' }, 
@@ -352,7 +352,7 @@ const BankCard = ({ user, name, pfpUrl }) => {
                         )
                     )
                 ),
-                React.createElement('div', { className: 'footer' }, '🔒 VareBot Banking System')
+                React.createElement('div', { className: 'footer' }, '🔒 𝟴𝟴𝟴-𝗕𝗢𝗧 Banking System')
             )
         )
     );
@@ -412,7 +412,7 @@ let handler = async (m, { conn, usedPrefix }) => {
             pfpUrl
         });
         const caption = `
- ⋆｡˚『 ╭ \`BANCA VAREBOT\` ╯ 』˚｡⋆\n╭\n│
+ ⋆｡˚『 ╭ \`BANCA 𝟴𝟴𝟴-𝗕𝗢𝗧\` ╯ 』˚｡⋆\n╭\n│
 │ 『 👤 』 \`Nome:\` ${name}
 │ 『 🍥 』 \`Utente:\` @${who.split('@')[0]}
 │
@@ -445,7 +445,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         }, { quoted: m });
         
     } catch (error) {
-        let txt = ` ⋆｡˚『 ╭ \`BANCA VAREBOT\` ╯ 』˚｡⋆\n╭\n│
+        let txt = ` ⋆｡˚『 ╭ \`BANCA 𝟴𝟴𝟴-𝗕𝗢𝗧\` ╯ 』˚｡⋆\n╭\n│
 │ 『 👤 』 \`Nome:\` ${name}
 │ 『 🍥 』 \`Utente:\` @${who.split('@')[0]}
 │
