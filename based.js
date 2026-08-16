@@ -116,7 +116,7 @@ if (!methodCodeQR && !methodCode && !fs.existsSync(`./${authFile}/creds.json`)) 
 
         const a = violet1('╭━━━━━━━━━━━━━• ✧˚🩸 𝟴𝟴𝟴-𝗕𝗢𝗧 🕊️˚✧ •━━━━━━━━━━━━━');
         const b = violet1('╰━━━━━━━━━━━━━• ☾⋆₊✧ 𝟴𝟴𝟴-𝗕𝗢𝗧 ✧₊⋆☽ •━━━━━━━━━━━━━');
-        const linea = violet2('   ✦━━━━━━✦✦━━━━━━༺༻━━━━━━༺༻━━━━━━✦✦━━━━━━✦');
+        const linea = violet2('    ✦━━━━━━✦✦━━━━━━༺༻━━━━━━༺༻━━━━━━✦✦━━━━━━✦');
         const sm = violet3('SELEZIONE METODO DI ACCESSO ✦');
         const qr = violet4(' ┌─⭓') + ' ' + chalk.bold.hex('#D2B4DE')('1. Scansione con QR Code');
         const codice = violet4(' └─⭓') + ' ' + chalk.bold.hex('#D2B4DE')('2. Codice di 8 cifre');
@@ -124,7 +124,7 @@ if (!methodCodeQR && !methodCode && !fs.existsSync(`./${authFile}/creds.json`)) 
             violet4(' ┌─⭓') + softText.italic(' Digita solo il numero corrispondente.'),
             violet4(' └─⭓') + softText.italic(' Premi Invio per confermare.'),
             softText.italic(''),
-            violet1.italic('                   by sam'),
+            violet1.italic('                    by sam'),
         ];
         const prompt = chalk.hex('#BB8FCE').bold('\n⌯ Inserisci la tua scelta ---> ');
 
@@ -146,7 +146,7 @@ ${prompt}`);
         if (!/^[1-2]$/.test(opzione)) {
             console.log(`\n${chalk.hex('#E74C3C').bold('✖ INPUT NON VALIDO')}
 
-${chalk.hex('#F5EEF8')('   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')}
+${chalk.hex('#F5EEF8')('    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')}
 ${chalk.hex('#EC7063').bold('⚠️ Sono ammessi solo i numeri')} ${chalk.bold.green('1')} ${chalk.hex('#EC7063').bold('o')} ${chalk.bold.green('2')}
 ${chalk.hex('#FADBD8')('┌─⭓ Nessuna lettera o simbolo')}
 ${chalk.hex('#FADBD8')('└─⭓ Copia il numero dell\'opzione desiderata e incollalo')}
@@ -312,19 +312,20 @@ async function connectionUpdate(update) {
         if (!global.isLogoPrinted) {
             const finchevedotuttoviolaviola = [
                 '#3b0d95', '#3b0d90', '#3b0d85', '#3b0d80', '#3b0d75',
-                '#3b0d70', '#3b0d65', '#3b0d60', '#3b0d55', '#3b0d50', '#3b0d45'
+                '#3b0d70', '#3b0d65', '#3b0d60', '#3b0d55', '#3b0d50'
             ];
             const varebot = [
-                ` ██▒   █▓ ▄▄▄       ██▀███  ▓█████  ▄▄▄▄    ▒█████  ▄▄▄█████▓   `,
-                `▓██░   █▒▒████▄    ▓██ ▒ ██▒▓█   ▀ ▓█████▄ ▒██▒  ██▒▓  ██▒ ▓▒   `,
-                ` ▓██  █▒░▒██  ▀█▄  ▓██ ░▄█ ▒▒███   ▒██▒ ▄██▒██░  ██▒▒ ▓██░ ▒░   `,
-                `  ▒██ █░░░██▄▄▄▄██ ▒██▀▀█▄  ▒▓█  ▄ ▒██░█▀  ▒██   ██░░ ▓██▓ ░    `,
-                `   ▒▀█░   ▓█   ▓██▒░██▓ ▒██▒░▒████▒░▓█  ▀█▓░ ████▓▒░  ▒██▒ ░    `,
-                `   ░ ▐░   ▒▒   ▓▒█░░ ▒▓ ░▒▓░░░ ▒░ ░░▒▓███▀▒░ ▒░▒░▒░   ▒ ░░      `,
-                `   ░ ░░    ▒   ▒▒ ░  ░▒ ░ ▒░ ░ ░  ░▒░▒   ░   ░ ▒ ▒░     ░       `,
-                `     ░░    ░   ▒     ░░   ░    ░    ░    ░ ░ ░ ▒░    ░         `,
-                `      ░        ░  ░   ░        ░  ░ ░          ░ ░              `,
-                `     ░                                   ░                      `
+                ` ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄ `,
+                `▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌`,
+                ` ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌     ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌ ▀▀▀▀█░█▀▀▀▀ `,
+                ` ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌    `,
+                ` ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌     ▐░▌    `,
+                ` ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░▌       ▐░▌     ▐░▌    `,
+                ` ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀█░▌     ▐░█▀▀▀▀▀▀▀█░▌▐░▌       ▐░▌     ▐░▌    `,
+                ` ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌    `,
+                ` ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░▌    `,
+                ` ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░▌    `,
+                `  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀      ▀     `
             ];
             varebot.forEach((line, i) => {
                 const color = finchevedotuttoviolaviola[i] || finchevedotuttoviolaviola[finchevedotuttoviolaviola.length - 1];
@@ -560,7 +561,7 @@ setInterval(async () => {
     if (global.stopped === 'close' || !conn || !conn.user) return;
     const deleted = clearDirectory(join(__dirname, 'temp'));
     if (deleted > 0) {
-        console.log(chalk.bold.greenBright(`\n╭⭑⭒━━━✦❘༻ 🟢 PULIZIA MULTIMEDIA 🟢 ༺❘✦━━━⭒⭑\n┃          ${deleted} FILE NELLA CARTELLA TEMP\n┃          ELIMINATI CON SUCCESSO\n╰⭑⭒━━━✦❘༻☾⋆⁺₊🗑️ 𝟴𝟴𝟴-𝗕𝗢𝗧 ♻️₊⁺⋆☽༺❘✦━━━⭒⭑`));
+        console.log(chalk.bold.greenBright(`\n╭⭑⭒━━━✦❘༻ 🟢 PULIZIA MULTIMEDIA 🟢 ༺❘✦━━━⭒⭑\n┃           ${deleted} FILE NELLA CARTELLA TEMP\n┃           ELIMINATI CON SUCCESSO\n╰⭑⭒━━━✦❘༻☾⋆⁺₊🗑️ 𝟴𝟴𝟴-𝗕𝗢𝗧 ♻️₊⁺⋆☽༺❘✦━━━⭒⭑`));
     }
 }, 1000 * 60 * 60);
 _quickTest().then(() => conn.logger.info(chalk.bold.magentaBright(``)));
