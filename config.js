@@ -34,9 +34,9 @@ global.errore = '⚠️ *Errore inatteso!* Usa il comando `.segnala <errore>` pe
 /*⭑⭒━━━✦❘༻� LINK 🌐༺❘✦━━━⭒⭑*/
 
 global.repobot = 'https://github.com/realvare/varebot'
-global.gruppo = 'https://chat.whatsapp.com/bysamakavare'
+global.gruppo = 'https://chat.whatsapp.com/Dxfu8kYcAhaIVZIVdKwGRc?s=cl&p=a&ilr=1'
 global.canale = 'https://whatsapp.com/channel/0029VbB41Sa1Hsq1JhsC1Z1z'
-global.insta = 'https://www.instagram.com/samakavare'
+global.insta = 'https://www.instagram.com/arty.340?igsh=ZGxranlrczNybHJ0'
 
 /*⭑⭒━━━✦❘🗝️ API KEYS 🌍༺❘✦━━━⭒⭑*/
 
