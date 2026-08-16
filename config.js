@@ -4,7 +4,7 @@ import chalk from 'chalk'
 import fs from 'fs'
 const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
 
-/*⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝓿𝓪𝓻𝓮𝓫𝓸𝓽 ✧₊⁺⋆☽༺❘✦━━━⭒⭑*/
+/*⭑⭒━━━✦❘༻☾⋆⁺₊✧ 𝟴𝟴𝟴 𝗕𝗢𝗧 ✧₊⁺⋆☽༺❘✦━━━⭒⭑*/
 
 global.prefisso = '.'
 global.sam = ['573180770909', '573117824583',]
@@ -22,12 +22,12 @@ global.prems = ['393514357738', '393511082922', '212614769337']
 
 /*⭑⭒━━━✦❘༻🩸 INFO BOT 🕊️༺❘✦━━━⭒⭑*/
 
-global.nomepack = 'vare ✧ bot'
-global.nomebot = '✧˚🩸 varebot 🕊️˚✧'
-global.wm = 'vare ✧ bot'
-global.autore = 'SⒶ𝔪'
-global.dev = '⋆｡˚- SⒶ𝔪'
-global.testobot = `༻⋆⁺₊𝓿𝓪𝓻𝓮𝓫𝓸𝓽₊⁺⋆༺`
+global.nomepack = '𝟴𝟴𝟴 𝗕𝗢𝗧'
+global.nomebot = '✧˚🩸 𝟴𝟴𝟴 𝗕𝗢𝗧 🕊️˚✧'
+global.wm = '𝟴𝟴𝟴 𝗕𝗢𝗧'
+global.autore = 'Punisher'
+global.dev = 'Punisher'
+global.testobot = `༻𝟴𝟴𝟴 𝗕𝗢𝗧༺`
 global.versione = pkg.version
 global.errore = '⚠️ *Errore inatteso!* Usa il comando `.segnala <errore>` per avvisare lo sviluppatore.'
 
