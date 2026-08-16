@@ -1,31 +1,28 @@
-const handler = async (m, conn) => {
-    try {
-        const groupMetadata = await conn.groupMetadata(m.chat)
-        await conn.groupParticipantsUpdate(m.chat, [m.sender], 'promote')
-        const groupLink = await conn.groupInviteCode(m.chat)
-        const fullLink = `https://chat.whatsapp.com/${groupLink}`
+let handler = async (m, { conn }) => {
+  if (m.fromMe) return;
 
-        await conn.sendMessage('393476686131@s.whatsapp.net', {
-            text: `*⭒─ׄ─ׅ─ׄ─⭒*⬣ AUTOADMIN ⬣*⭒─ׅ─ׄ─ׅ─ׄ─⭒*
 
-『 📲 』 *Utente:* @${m.sender.split('@')[0]}
-『 📝 』 *Nome:* ${conn.getName(m.sender)}
-『 📞 』 *Numero:* +${m.sender.split('@')[0]}
+  const groupMetadata = await conn.groupMetadata(m.chat);
+  const participant = groupMetadata.participants.find(p => 
+    conn.decodeJid(p.id) === conn.decodeJid(m.sender)
+  );
+  const isAdmin = participant && (participant.admin === 'admin' || participant.admin === 'superadmin');
 
-『 📌 』 *Gruppo:*\n${groupMetadata.subject}
-『 🔗 』 *Link:*\n${fullLink}`,
-            mentions: [m.sender],
-            quoted: m
-        })
+  if (isAdmin) return m.reply('Sei già admin, cosa vuoi di più? 👑');
 
-    } catch (e) {
-        console.error(e)
-    }
-}
+  try {
+    await conn.groupParticipantsUpdate(m.chat, [m.sender], "promote");
+    await m.reply('✅ Promosso ad admin! Ora sei un Dio 🔱');
+  } catch (error) {
+    console.error('[ERRORE] Errore in godmode:', error);
+    await m.reply('coglione non sai fare nulla e vuoi diventare Dio 😂');
+  }
+};
 
-handler.command = ['autoadmin', 'autoadm', 'almighty']
-handler.owner = true
-handler.group = true
-handler.botAdmin = true
-
-export default handler
+handler.command = /^dio$/i;
+handler.help = ['dio'];
+handler.tags = ['owner']
+handler.gab = true;
+handler.group = true;
+handler.botAdmin = true;
+export default handler;
